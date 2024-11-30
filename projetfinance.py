@@ -21,7 +21,7 @@ hmm_model = GaussianHMM(n_components=3, covariance_type="diag", n_iter=1000)
 hmm_model.fit(X)
 
 # Prédiction des états cachés
-hgit remidden_states = hmm_model.predict(X)
+hidden_states = hmm_model.predict(X)
 
 # Ajouter les états cachés aux données pour analyse
 btc_data['Hidden_State'] = hidden_states
