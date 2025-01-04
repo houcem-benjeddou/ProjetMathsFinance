@@ -9,6 +9,20 @@ start_date = "2022-01-01"  # Date de début
 end_date = "2024-12-31"    # Date de fin
 btc_data = yf.download("BTC-USD", start=start_date, end=end_date)
 
+# **Nouveau: Visualisation des données brutes**
+print("\nVisualisation des premières lignes des données brutes extraites :")
+print(btc_data.head())  # Afficher les premières lignes
+
+# Visualisation des prix de clôture
+plt.figure(figsize=(12, 6))
+plt.plot(btc_data.index, btc_data['Close'], label="Prix de Clôture", color="blue")
+plt.title("Prix de Clôture Bitcoin (Données Brutes)")
+plt.xlabel("Date")
+plt.ylabel("Prix de Clôture (USD)")
+plt.legend()
+plt.grid()
+plt.show()
+
 # Préparation des données : calcul des rendements (Returns) à partir des prix de clôture
 btc_data['Returns'] = btc_data['Close'].pct_change().dropna()
 btc_data = btc_data.dropna()  # Supprimer les valeurs manquantes
@@ -55,5 +69,3 @@ summary = pd.DataFrame({
 # Afficher le tableau complet dans le terminal
 print("\nDetailed Analysis of HMM Model States:\n")
 print(summary)
-
-# Affichage détaillé des caractéristiques du modèle HMM dans le terminal
